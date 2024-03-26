@@ -92,6 +92,11 @@ header {
 
 .icons img {
   width: 30px;
+  transition: transform 0.5s;
+}
+
+.icons img:hover {
+  transform: scale(1.2);
 }
 
 .likes {
