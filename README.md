@@ -1,3 +1,6 @@
+Netlify link: https://oldagramsoloproject.netlify.app/
+
+
 # co2274297820a9405442e3a2a
 
 Quick start:
