@@ -92,18 +92,24 @@ header {
 
 .icons img {
   width: 30px;
-  padding-right: 10px;
 }
 
 .likes {
   font-weight: bold;
-  margin-top: 12px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .post-comment {
-  margin-bottom: 25px;
+  margin-bottom: 16px;
+  margin-top: 12px;
 }
 
 .post-comment span {
   font-weight: bold;
+}
+
+.liked-popup {
+  z-index: 100;
+  font-size: 100px;
 }

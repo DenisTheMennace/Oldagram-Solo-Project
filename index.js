@@ -29,29 +29,51 @@ const posts = [
 ]
 
 const postsContainer = document.getElementById("posts-container")
+const postImages = document.querySelector(".post-image")
+let canLike = true
 
 function renderPosts() {
     for (let i = 0; i < posts.length; i++) {
         postsContainer.innerHTML += `
-        <div class="post-header">
-            <img src="${posts[i].avatar}">
-            <div class="user-location-container">
-                <p class="user-name">${posts[i].name}</p>
-                <p class="location">${posts[i].location}</p>
+        <div class="post">
+            <div class="post-header">
+                <img src="${posts[i].avatar}">
+                <div class="user-location-container">
+                    <p class="user-name">${posts[i].name}</p>
+                    <p class="location">${posts[i].location}</p>
+                </div>
             </div>
-        </div>
-        <img class="post-image" src="${posts[i].post}">
-        <div class="post-footer">
-            <div class="icons">
-                <img src="images/icon-heart.png">
-                <img src="images/icon-comment.png">
-                <img src="images/icon-dm.png">
+            <img class="post-image" src="${posts[i].post}">
+            <div class="post-footer">
+                <div class="icons">
+                    <img class="like-btn" src="images/icon-heart.png">
+                    <img src="images/icon-comment.png">
+                    <img src="images/icon-dm.png">
+                </div>
+                <p class="likes"><span class="likes-amount">${posts[i].likes}</span> likes</p>
+                <p class="post-comment"><span>${posts[i].username}</span> ${posts[i].comment}</p>
             </div>
-            <p class="likes">${posts[i].likes} likes</p>
-            <p class="post-comment"><span>${posts[i].username}</span> ${posts[i].comment}</p>
         </div>
         `
     }
 }
 
-renderPosts()
+postsContainer.addEventListener("dblclick", function(event) {
+    if (event.target.classList.contains("post-image")) {
+        let postAuthor = event.target.parentElement.querySelector(".user-location-container").querySelector(".user-name").textContent
+        for (let i = 0; i < posts.length; i++) {
+            if (posts[i].name === postAuthor && canLike) {
+                updateLikes(i)
+            }
+        }
+        
+    }
+});
+
+function updateLikes(i) {
+    console.log(posts[i])
+    posts[i].likes += 1;
+    postsContainer.children[i].querySelector(".likes-amount").textContent = posts[i].likes;
+}
+
+renderPosts();
